@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Dia dos Namorados</title>
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #881337, #be185d, #dc2626);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .overlay {
+      background: linear-gradient(135deg, rgba(136, 19, 55, 0.8), rgba(190, 24, 93, 0.6), rgba(220, 38, 38, 0.8));
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background: url('photos/1000005021.jpg') no-repeat center center;
+      background-size: cover;
+      position: relative;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.6), rgba(236, 72, 153, 0.5), rgba(239, 68, 68, 0.6));
+      z-index: 0;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      padding: 1.5rem;
+      border-radius: 20px;
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.3), rgba(236, 72, 153, 0.3));
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 30px rgba(244, 63, 94, 0.5);
+      border: 1px solid rgba(244, 63, 94, 0.4);
+    }
+
+    .section {
+      display: flex;
+      align-items: center;
+      padding: 4rem 2rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.6);
+    }
+
+    .text {
+      flex: 0 0 auto;
+      max-width: 350px;
+      padding: 1.5rem 2rem;
+      font-size: 1.2rem;
+      margin: 1rem;
+      border-radius: 25px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      color: white;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    /* WhatsApp-style message bubbles */
+    .text-left {
+      background: linear-gradient(135deg, #f43f5e, #ec4899);
+      border-bottom-left-radius: 8px;
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    .text-left::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 15px;
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 0;
+      border-top: 15px solid #f43f5e;
+    }
+
+    .text-right {
+      background: linear-gradient(135deg, #dc2626, #f43f5e);
+      border-bottom-right-radius: 8px;
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .text-right::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      right: 15px;
+      width: 0;
+      height: 0;
+      border-right: 15px solid transparent;
+      border-left: 0;
+      border-top: 15px solid #dc2626;
+    }
+
+    .photo {
+      flex: 1;
+      margin: 1rem;
+    }
+
+    /* Responsividade das fotos - menor em telas maiores */
+    
+    /* Telas muito grandes (monitores grandes) */
+    @media (min-width: 1920px) {
+      .photo {
+        max-width: 280px;
+        min-width: 280px;
+      }
+    }
+
+    /* Telas grandes (monitores desktop) */
+    @media (min-width: 1440px) and (max-width: 1919px) {
+      .photo {
+        max-width: 320px;
+        min-width: 320px;
+      }
+    }
+
+    /* Telas médias-grandes (laptops grandes) */
+    @media (min-width: 1200px) and (max-width: 1439px) {
+      .photo {
+        max-width: 350px;
+        min-width: 350px;
+      }
+    }
+
+    /* Telas médias (laptops) */
+    @media (min-width: 992px) and (max-width: 1199px) {
+      .photo {
+        max-width: 380px;
+        min-width: 300px;
+      }
+    }
+
+    /* Tablets */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .photo {
+        max-width: 450px;
+        min-width: 300px;
+      }
+      
+      .section {
+        flex-direction: column;
+      }
+      
+      .text {
+        max-width: 90%;
+        margin: 1rem auto;
+      }
+    }
+
+    /* Celulares grandes */
+    @media (min-width: 480px) and (max-width: 767px) {
+      .photo {
+        max-width: 90%;
+        min-width: 280px;
+      }
+      
+      .section {
+        flex-direction: column;
+      }
+      
+      .text {
+        max-width: 90%;
+        margin: 1rem auto;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Celulares pequenos */
+    @media (max-width: 479px) {
+      .photo {
+        max-width: 95%;
+        min-width: 250px;
+      }
+      
+      .section {
+        flex-direction: column;
+        padding: 2rem 1rem;
+      }
+      
+      .text {
+        max-width: 95%;
+        margin: 1rem auto;
+        font-size: 1.1rem;
+      }
+      
+      header h1 {
+        font-size: 1.8rem;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <header>
+    <h1 data-aos="fade-up" data-aos-duration="1500">
+      Feliz Dia dos Namorados, meu amor ❤️<br>
+      Cada momento ao seu lado é uma eternidade boa demais pra ser esquecida.
+    </h1>
+  </header>
+
+  <section class="section">
+    <div class="photo" data-aos="fade-right">
+      <img src="photos/1000005021.jpg" alt="Foto juntos 1">
+    </div>
+    <div class="text text-left" data-aos="fade-left">
+      <p>Desde o primeiro dia, você me faz sorrir de um jeito que ninguém mais consegue.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="text text-right" data-aos="fade-right">
+      <p>A cada passo que damos, sinto que fomos feitos um para o outro.</p>
+    </div>
+    <div class="photo" data-aos="fade-left">
+      <img src="photos/1000030030.jpg" alt="Foto juntos 2">
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="photo" data-aos="fade-right">
+      <img src="photos/1000009794.jpg" alt="Foto juntos 3">
+    </div>
+    <div class="text text-left" data-aos="fade-left">
+      <p>Obrigado por ser meu abrigo, minha risada favorita e meu maior amor 💖</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="text text-right" data-aos="fade-right">
+      <p>Quero estar contigo sempre.</p>
+    </div>
+    <div class="photo" data-aos="fade-left">
+      <img src="photos/1000030072.jpg" alt="Foto juntos 2">
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="photo" data-aos="fade-right">
+      <img src="photos/1000001813.jpg" alt="Foto juntos 3">
+    </div>
+    <div class="text text-left" data-aos="fade-left">
+      <p>No projetinho 💪</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="text text-right" data-aos="fade-right">
+      <p>Nas festas 🎉</p>
+    </div>
+    <div class="photo" data-aos="fade-left">
+      <img src="photos/1000006653.jpg" alt="Foto juntos 2">
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="photo" data-aos="fade-right">
+      <img src="photos/1000008151.jpg" alt="Foto juntos 3">
+    </div>
+    <div class="text text-left" data-aos="fade-left">
+      <p>Na pescaria 🐟</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="text text-right" data-aos="fade-right">
+      <p>Nas viagens ✈️</p>
+    </div>
+    <div class="photo" data-aos="fade-left">
+      <img src="photos/1000017856.jpg" alt="Foto juntos 2">
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="photo" data-aos="fade-right">
+      <img src="photos/1000011212.jpg" alt="Foto juntos 3">
+    </div>
+    <div class="text text-left" data-aos="fade-left">
+      <p>No piquenique 🧺</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="text text-right" data-aos="fade-right">
+      <p>Nos aniversários 🎶</p>
+    </div>
+    <div class="photo" data-aos="fade-left">
+      <img src="photos/1000051697.jpg" alt="Foto juntos 2">
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="photo" data-aos="fade-right">
+      <img src="photos/1000009674.jpg" alt="Foto juntos 3">
+    </div>
+    <div class="text text-left" data-aos="fade-left">
+      <p>Nos dias de sol 🌞</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="text text-right" data-aos="fade-right">
+      <p>Qualquer que seja o lugar, se for com você, será especial.</p>
+    </div>
+    <div class="photo" data-aos="fade-left">
+      <img src="photos/1000061097.jpg" alt="Foto juntos 2">
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="photo" data-aos="fade-right">
+      <img src="photos/1000007017.jpg" alt="Foto juntos 3">
+    </div>
+    <div class="text text-left" data-aos="fade-left">
+      <p>Obrigado por estar comigo, meu amor.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="text text-right" data-aos="fade-right">
+      <p>Beijão (de língua)</p>
+    </div>
+    <div class="photo" data-aos="fade-left">
+      <img src="photos/1000024415.jpg" alt="Foto juntos 2">
+    </div>
+  </section>
+  
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
